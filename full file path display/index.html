@@ -1,0 +1,29 @@
+<html>
+<head>
+  <title>file selector(display full path)</title>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+
+</head>
+<body>
+<input style="display:none;" id="fileDialog" type="file" multiple accept=".pdf"/>
+<button onclick="chooseFile('#fileDialog')">Select Files</button>
+<ul id="fileResults">
+</ul>
+<script>
+  function chooseFile(name) {
+    var chooser = document.querySelector(name);
+    chooser.addEventListener("change", function(evt) {
+      $("ul").html("");
+      var files = $('#fileDialog')[0].files;
+      for (var i = 0; i < files.length; ++i){
+        console.log(files[i].path);
+        $("ul").append('<li>'+files[i].path+'</li>');
+      }
+    }, false);
+    chooser.click();
+  }
+
+</script>
+
+</body>
+</html>
